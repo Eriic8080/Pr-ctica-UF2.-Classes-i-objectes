@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <header class="bg-gradient-to-r from-[#614385] to-[#516395] w-full py-5 mb-10 px-20">
+        <h2 class="text-white text-xl container mx-auto">Gestió de cicles</h2>
+    </header>
+
+    <main class="container flex mx-auto w-full px-20">
+        <div class="formulari w-2/4 pr-10">
+            <div class="mb-20" id="form_cicles">
+                <p class="uppercase text-xl mb-3">Afegir cicle</p>
+
+                <div class="relative z-0 mb-6 w-full group">
+                    <input type="text" name="cicle_nom" id="cicle_nom" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="cicle_nom" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nom del cicle</label>
+                </div>
+
+                <div class="relative z-0 mb-6 w-full group">
+                    <select id="cicle_categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="0" selected>Categoria</option>
+                        <option value="CFGS">CFGS</option>
+                        <option value="CFGM">CFGM</option>
+                    </select>
+                </div>
+                
+                <div class="grid md:grid-cols-2 md:gap-6">
+                  <div class="relative z-0 mb-6 w-full group">
+                      <input type="number" name="cicle_alumnes" id="cicle_alumnes" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                      <label for="cicle_alumnes" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número d'alumnes</label>
+                  </div>
+                  <div class="relative z-0 mb-6 w-full group">
+                      <input type="text" name="cicle_abr" id="cicle_abr" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                      <label for="cicle_abr" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Abreviatura del cicle</label>
+                  </div>
+                </div>
+
+                <input type="hidden" value="-1" id="editCicle"/>
+                
+                <button onClick="afegirCicle()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Afegir cicle</button>
+            </div>
+
+            <div class="mb-40" id="form_cicles">
+                <p class="uppercase text-xl mb-3">Afegir mòdul</p>
+
+                <div class="relative z-0 mb-6 w-full group">
+                    <select id="modul_cicle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="0" selected>Cicle</option>
+                    </select>
+                </div>
+
+                <div class="relative z-0 mb-6 w-full group">
+                    <input type="text" name="modul_nom" id="modul_nom" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="modul_nom" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nom del mòdul</label>
+                </div>              
+               
+                <div class="grid md:grid-cols-2 md:gap-6">
+                  <div class="relative z-0 mb-6 w-full group">
+                      <input type="number" name="modul_num" id="modul_num" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                      <label for="modul_num" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número del mòdul</label>
+                  </div>
+                  <div class="relative z-0 mb-6 w-full group">
+                      <input type="number" name="modul_hores" id="modul_hores" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                      <label for="modul_hores" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Hores mòdul</label>
+                  </div>
+                </div>
+                
+                <button onClick="afegirModul()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Afegir mòdul</button>
+            </div>   
+        </div>
+
+        <div class="llistat_mapa w-2/4 pl-2" id="llistat">
+           
+        </div>
+        
+    </main>
+
+    <footer class="fixed bottom-0 left-0 z-20 p-4 w-full bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6">
+        <span class="text-sm text-gray-500 sm:text-center">© 2022 <a href="#" class="hover:underline">NomCognom</a>. All Rights Reserved.
+        </span>
+        <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+            <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+            </li>
+            <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+            </li>
+            <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6">Licensing</a>
+            </li>
+            <li>
+                <a href="#" class="hover:underline">Contact</a>
+            </li>
+        </ul>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
